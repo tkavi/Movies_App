@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask,request,jsonify
+from flask import Flask,request,jsonify,render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_restful import Api,Resource
 from http import HTTPStatus
@@ -121,6 +121,10 @@ class OneMovie(Resource):
 
 api.add_resource(AllMovies,"/movies")
 api.add_resource(OneMovie,"/movies/<int:id>")
+
+@app.route("/",methods=['GET'])
+def home_page():
+    return render_template("home.html")
 
 if __name__=='__main__':
     app.run()
