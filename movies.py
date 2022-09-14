@@ -126,5 +126,12 @@ api.add_resource(OneMovie,"/movies/<int:id>")
 def home_page():
     return render_template("home.html")
 
+@app.route("/movies",methods=['GET','POST'])
+def movies_page():
+    if request.method == 'GET':
+        movies = AllMovies.get()
+        print(movies)
+    return render_template("movies.html")
+
 if __name__=='__main__':
     app.run()
